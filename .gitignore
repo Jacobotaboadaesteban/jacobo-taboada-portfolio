@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+.env*
+!.env.example
+qa-artifacts/
+design-references/
+next-env.d.ts
