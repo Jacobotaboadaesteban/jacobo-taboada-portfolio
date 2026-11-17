@@ -34,14 +34,15 @@ npm start
 - **Inicio:** presentación, foto y enlaces a proyectos y contacto.
 - **Habilidades:** cinta animada con controles de pausa y soporte para movimiento reducido.
 - **La historia:** perfil, trayectoria, formación y herramientas.
-- **El bar:** estantería interactiva y carta con seis proyectos. Las fichas incluyen cuatro pestañas: resumen, preparación, resultados y tecnología.
+- **El bar:** estantería interactiva y carta con siete proyectos, seis de ellos en la estantería. Las fichas incluyen cuatro pestañas: resumen, preparación, resultados y tecnología.
 - **Contacto:** correo, teléfono, LinkedIn y ubicación.
 - Selector de idioma español / inglés y diseño adaptable a móvil y escritorio.
 
 ## Proyectos
 
 - **FaceID-Desk:** prototipo académico de verificación facial 1:1 con webcam y detección básica de parpadeo.
-- **Mario Bros:** juego de plataformas hecho con Python y Pyxel.
+- **Pulso:** dashboard personal full stack para finanzas, gimnasio, agenda y objetivos semanales. Novedad destacada con demo local y datos ficticios.
+- **Mario Bros (fuera de carta):** juego de plataformas hecho con Python y Pyxel, conservado como proyecto anterior.
 - **TeesForKindness:** tienda web colaborativa; enlaza al repositorio original del equipo.
 - **Survival Analysis:** análisis de datos de pacientes pediátricos con PCA, K-means y métodos de supervivencia.
 - **MemorIA:** producto de salud digital en desarrollo.

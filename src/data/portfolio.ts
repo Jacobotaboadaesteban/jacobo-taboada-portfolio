@@ -1,6 +1,6 @@
 export type Language = "es" | "en";
 export type Localized = Record<Language, string>;
-export type GlassStyle = "rocks" | "coupe" | "highball";
+export type GlassStyle = "rocks" | "coupe" | "highball" | "tropical";
 
 export const identity = {
   name: "Jacobo Taboada Esteban",
@@ -99,11 +99,12 @@ export interface Project {
   repository?: string;
   status?: Localized;
   statusNote?: Localized;
+  offMenu?: boolean;
   glass: GlassStyle;
   color: string;
 }
 
-// Añadir un objeto aquí crea automáticamente una bebida y una entrada en la carta.
+// Los proyectos fuera de carta conservan su ficha y aparecen solo en la carta.
 export const projects: Project[] = [
   {
     id: "faceid-desk",
@@ -133,31 +134,30 @@ export const projects: Project[] = [
     color: "#dfad48",
   },
   {
-    id: "mario-bros",
-    name: "Mario Bros",
-    year: "2023–2024",
-    category: { es: "Desarrollo de videojuegos", en: "Game development" },
-    collaboration: { es: "Proyecto de programación", en: "Programming project" },
-    summary: { es: "Lógica, píxeles y una moneda más.", en: "Logic, pixels and one more coin." },
+    id: "pulso",
+    name: "Pulso",
+    year: "2026",
+    category: { es: "Desarrollo full stack", en: "Full-stack development" },
+    collaboration: { es: "Proyecto personal", en: "Personal project" },
+    summary: { es: "Finanzas, entrenamientos y objetivos. Todo a tu ritmo.", en: "Finances, workouts and goals. All at your own pace." },
     description: {
-      es: "Juego de plataformas inspirado en Mario Bros, creado en Python con Pyxel. Permite moverse, saltar, recoger monedas y enfrentarse a tortugas, cangrejos y moscas. Incluye vidas, colisiones y puntuación. El repositorio contiene los gráficos y sonidos en la carpeta assets y las instrucciones para ejecutarlo en local.",
-      en: "A platform game inspired by Mario Bros, built with Python and Pyxel. Move, jump, collect coins and face turtles, crabs and flies. It includes lives, collisions and scoring. The repository contains graphics and sounds in the assets folder, along with local setup instructions.",
+      es: "Dashboard personal que reúne agenda, ingresos y gastos, inversiones, gimnasio y tareas. Convierte los registros diarios en indicadores visuales: tiempo libre restante, progreso de entrenamiento y objetivos semanales con historial. Desarrollado con React y TypeScript, una API en Cloudflare Workers y persistencia en D1. El repositorio incluye una demo local con datos ficticios; la sincronización automática con Excel sigue pendiente.",
+      en: "A personal dashboard bringing together a calendar, income and expenses, investments, workouts and tasks. Daily records become visual indicators: remaining free time, training progress and weekly goals with history. Built with React and TypeScript, a Cloudflare Workers API and D1 persistence. The repository includes a local demo with fictional data; automatic Excel synchronisation is still pending.",
     },
     preparation: [
-      { es: "Organicé la estructura alrededor del escenario y el bucle principal en tablero.py, separando la lógica del juego en módulos.", en: "I organised the game around the level and main loop in tablero.py, keeping the game logic in separate modules." },
-      { es: "Desarrollé el movimiento, el salto y las vidas del personaje en mario.py, con controles de teclado para recorrer el nivel.", en: "I implemented the character’s movement, jumping and lives in mario.py, with keyboard controls for navigating the level." },
-      { es: "Añadí elementos de juego en módulos propios: enemigos —tortugas, cangrejos y moscas—, monedas y el bloque POW.", en: "I added gameplay elements in their own modules: enemies—turtles, crabs and flies—coins and the POW block." },
-      { es: "Conecté las interacciones del nivel, incluidas las colisiones y la puntuación, y preparé los recursos gráficos y de audio para Pyxel.", en: "I connected level interactions, including collisions and scoring, and prepared the graphics and audio resources for Pyxel." },
-      { es: "Dejé el juego listo para ejecutarse desde la carpeta del proyecto con python main.py; el repositorio incluye requisitos, controles y estructura de archivos.", en: "I made the game runnable from its project folder with python main.py; the repository documents its requirements, controls and file structure." },
+      { es: "Organicé las necesidades de uso diario en módulos de finanzas, agenda, gimnasio y tareas, con una interfaz adaptable al móvil.", en: "I organised everyday needs into finance, calendar, workout and task modules, with a mobile-friendly interface." },
+      { es: "Conecté la interfaz React con una API que valida los registros con Zod y consulta la base de datos D1 mediante Drizzle ORM.", en: "I connected the React interface to an API that validates records with Zod and queries D1 through Drizzle ORM." },
+      { es: "Implementé objetivos por semana, recuento de días distintos de entrenamiento y cálculos de agenda que se ajustan a la hora de Madrid.", en: "I implemented weekly goals, distinct training-day counts and calendar calculations that follow Madrid time." },
+      { es: "Preparé una versión pública con datos ficticios, instrucciones de ejecución y pruebas de fechas, presupuestos, entrenamientos y persistencia.", en: "I prepared a public version with fictional data, setup instructions and tests for dates, budgets, workouts and persistence." },
     ],
     results: {
-      es: "El resultado es un juego ejecutable en local en el que se puede recorrer el escenario, saltar, recoger monedas y esquivar enemigos. Incluye controles de teclado, colisiones, vidas y puntuación; el repositorio explica cómo instalar Pyxel y arrancarlo.",
-      en: "The result is a locally runnable game where the player can move through the level, jump, collect coins and avoid enemies. It includes keyboard controls, collisions, lives and scoring; the repository explains how to install Pyxel and launch it.",
+      es: "Un MVP funcional para registrar y consultar el día a día desde una sola aplicación. Los objetivos se actualizan al guardar actividad y el historial se conserva al cambiar de semana. La demo local permite explorar el producto y su código sin acceder a datos personales. Incluye validación de tipos, pruebas de lógica y comprobaciones de la API.",
+      en: "A working MVP for recording and reviewing everyday activity in one application. Goals update when activity is saved, and history remains available across weeks. The local demo lets visitors explore the product and code using fictional data. It includes type checking, business-rule tests and API checks.",
     },
-    technologies: ["Python", "Pyxel"],
-    repository: "https://github.com/Jacobotaboadaesteban/MarioBros",
-    glass: "coupe",
-    color: "#90bd86",
+    technologies: ["React", "TypeScript", "Vinext / Vite", "Cloudflare Workers", "D1 / SQLite", "Drizzle ORM", "Zod"],
+    repository: "https://github.com/Jacobotaboadaesteban/pulso",
+    glass: "tropical",
+    color: "#f78469",
   },
   {
     id: "tees-for-kindness",
@@ -267,6 +267,34 @@ export const projects: Project[] = [
     glass: "rocks",
     color: "#d5b161",
   },
+  {
+    id: "mario-bros",
+    name: "Mario Bros",
+    year: "2023–2024",
+    category: { es: "Desarrollo de videojuegos", en: "Game development" },
+    collaboration: { es: "Proyecto de programación", en: "Programming project" },
+    summary: { es: "Lógica, píxeles y una moneda más.", en: "Logic, pixels and one more coin." },
+    description: {
+      es: "Juego de plataformas inspirado en Mario Bros, creado en Python con Pyxel. Permite moverse, saltar, recoger monedas y enfrentarse a tortugas, cangrejos y moscas. Incluye vidas, colisiones y puntuación. El repositorio contiene los gráficos y sonidos en la carpeta assets y las instrucciones para ejecutarlo en local.",
+      en: "A platform game inspired by Mario Bros, built with Python and Pyxel. Move, jump, collect coins and face turtles, crabs and flies. It includes lives, collisions and scoring. The repository contains graphics and sounds in the assets folder, along with local setup instructions.",
+    },
+    preparation: [
+      { es: "Organicé la estructura alrededor del escenario y el bucle principal en tablero.py, separando la lógica del juego en módulos.", en: "I organised the game around the level and main loop in tablero.py, keeping the game logic in separate modules." },
+      { es: "Desarrollé el movimiento, el salto y las vidas del personaje en mario.py, con controles de teclado para recorrer el nivel.", en: "I implemented the character’s movement, jumping and lives in mario.py, with keyboard controls for navigating the level." },
+      { es: "Añadí elementos de juego en módulos propios: enemigos —tortugas, cangrejos y moscas—, monedas y el bloque POW.", en: "I added gameplay elements in their own modules: enemies—turtles, crabs and flies—coins and the POW block." },
+      { es: "Conecté las interacciones del nivel, incluidas las colisiones y la puntuación, y preparé los recursos gráficos y de audio para Pyxel.", en: "I connected level interactions, including collisions and scoring, and prepared the graphics and audio resources for Pyxel." },
+      { es: "Dejé el juego listo para ejecutarse desde la carpeta del proyecto con python main.py; el repositorio incluye requisitos, controles y estructura de archivos.", en: "I made the game runnable from its project folder with python main.py; the repository documents its requirements, controls and file structure." },
+    ],
+    results: {
+      es: "El resultado es un juego ejecutable en local en el que se puede recorrer el escenario, saltar, recoger monedas y esquivar enemigos. Incluye controles de teclado, colisiones, vidas y puntuación; el repositorio explica cómo instalar Pyxel y arrancarlo.",
+      en: "The result is a locally runnable game where the player can move through the level, jump, collect coins and avoid enemies. It includes keyboard controls, collisions, lives and scoring; the repository explains how to install Pyxel and launch it.",
+    },
+    technologies: ["Python", "Pyxel"],
+    repository: "https://github.com/Jacobotaboadaesteban/MarioBros",
+    offMenu: true,
+    glass: "coupe",
+    color: "#90bd86",
+  },
 ];
 
 export const copy = {
@@ -290,7 +318,7 @@ export const copy = {
     barEyebrow: "02 / EL BAR", barTitle: "Ideas que se\nsirven en código.",
     barIntro: "Cada bebida, un proyecto real. Elige en la barra o explora la carta para conocer su historia.",
     scene: "LA BARRA DE PROYECTOS", sceneNote: "ELIGE UNA BEBIDA · DESCUBRE UN PROYECTO", shelfDisplay: "Proyectos disponibles en la estantería",
-    projectAvailable: "Repositorio disponible", featured: "NOVEDAD!", recommended: "RECOMENDADO",
+    projectAvailable: "Repositorio disponible", featured: "NOVEDAD!", offMenu: "FUERA DE CARTA", offMenuNote: "Proyecto de una etapa anterior, conservado como parte de mi recorrido.", recommended: "RECOMENDADO",
     menu: "La carta", menuSub: "UNA SELECCIÓN DE PROYECTOS", menuFoot: "Hechos con curiosidad. Servidos con contexto.", menuComingSoon: "PRÓXIMAMENTE",
     openProject: "Ver proyecto", close: "Cerrar detalle", projectFile: "FICHA DE PROYECTO",
     aboutProject: "Qué hay en la mezcla", collaboration: "Tipo de proyecto", technologies: "Ingredientes técnicos", preparation: "Preparación", preparationSteps: "Pasos de preparación", results: "Resultados",
@@ -322,7 +350,7 @@ export const copy = {
     barEyebrow: "02 / THE BAR", barTitle: "Ideas served\nin code.",
     barIntro: "Each drink is a real project. Pick one at the bar or explore the menu to discover its story.",
     scene: "THE PROJECT BAR", sceneNote: "PICK A DRINK · DISCOVER A PROJECT", shelfDisplay: "Projects displayed on the shelves",
-    projectAvailable: "Repository available", featured: "NEW!", recommended: "RECOMMENDED",
+    projectAvailable: "Repository available", featured: "NEW!", offMenu: "OFF THE MENU", offMenuNote: "An earlier project, kept as part of my development journey.", recommended: "RECOMMENDED",
     menu: "The menu", menuSub: "A SELECTION OF PROJECTS", menuFoot: "Made with curiosity. Served with context.", menuComingSoon: "COMING SOON",
     openProject: "View project", close: "Close details", projectFile: "PROJECT NOTES",
     aboutProject: "What’s in the mix", collaboration: "Project type", technologies: "Technical ingredients", preparation: "How it was made", preparationSteps: "Project steps", results: "Outcome",

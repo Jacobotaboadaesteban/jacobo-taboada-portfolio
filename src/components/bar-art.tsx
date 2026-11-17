@@ -37,6 +37,22 @@ export function Drink({ style, color, className = "" }: { style: GlassStyle; col
         <path d="M124 101 147 51" stroke="#d0b170" strokeWidth="2" />
         <ellipse cx="140" cy="67" rx="10" ry="13" transform="rotate(22 140 67)" fill="#879d58" stroke="#b0c27a" /><circle cx="141" cy="66" r="3" fill="#d6b578" />
       </>}
+      {style === "tropical" && <>
+        <path d="M54 62h72c4 35-22 61-20 86 1 16 15 25 18 40-18 17-50 17-68 0 3-15 17-24 18-40 2-25-24-51-20-86Z" fill={`url(#${id}-glass)`} stroke="#fff0d3" strokeOpacity=".85" strokeWidth="1.8" />
+        <path d="M59 92q31-7 62 0c-4 21-19 39-18 57 1 16 11 25 16 36q-29 16-58 0c5-11 15-20 16-36 1-18-14-36-18-57Z" fill="#f5b44e" fillOpacity=".85" />
+        <path d="M76 135q14 5 28 0c-5 26 8 37 15 50q-29 16-58 0c7-13 20-24 15-50Z" fill={color} fillOpacity=".95" />
+        <ellipse cx="90" cy="93" rx="31" ry="5" fill="#ffdf82" fillOpacity=".9" />
+        <path d="m99 144 28-112" stroke="#6de0cf" strokeWidth="5" strokeLinecap="round" />
+        <path d="m97 143 28-112" stroke="#d6fff2" strokeWidth="1.5" />
+        <rect x="65" y="97" width="23" height="23" rx="4" transform="rotate(-12 65 97)" fill="#fff7d9" fillOpacity=".3" stroke="#fff7d9" strokeOpacity=".5" />
+        <rect x="91" y="113" width="20" height="22" rx="4" transform="rotate(15 91 113)" fill="#fff7d9" fillOpacity=".2" stroke="#fff7d9" strokeOpacity=".45" />
+        <path d="M57 76C24 59 36 25 61 48c4-33 32-28 28-8-15 4-22 16-32 36Z" fill="#5cd1a5" stroke="#b5edbd" strokeWidth="1.5" />
+        <path d="m57 74-11-25m11 25 17-30" stroke="#e0ffd2" strokeOpacity=".75" />
+        <path d="m132 53 7 13 15 2-11 11 2 16-14-8-14 6 4-15-10-12 15-1Z" fill="#fbd268" stroke="#fff0b3" strokeWidth="1.5" />
+        <circle cx="132" cy="75" r="6" fill="#ff9c64" />
+        <path d="M64 81c3 26 17 38 18 55m-23 51q31 17 62 0M90 201v13m-23 5q23-9 46 0" stroke="#fff4da" strokeOpacity=".7" strokeWidth="2" strokeLinecap="round" />
+        <path d="M30 111h10m-5-5v10m112 25h10m-5-5v10" stroke="#8ce6cf" strokeWidth="2" strokeLinecap="round" />
+      </>}
       {style === "highball" && <>
         <path d="M52 59h76l-5 142q-33 12-66 0z" fill={`url(#${id}-glass)`} stroke="#f9edcd" strokeOpacity=".7" strokeWidth="1.5" />
         <path d="M55 96q35-8 70 0l-4 101q-31 11-62 0z" fill={`url(#${id}-liquid)`} />

@@ -11,7 +11,8 @@ function Arrow({ down = false }: { down?: boolean }) {
 }
 
 const anchors = ["inicio", "historia", "bar", "contacto"];
-const projectShelves = Array.from({ length: Math.ceil(projects.length / 3) }, (_, index) => projects.slice(index * 3, index * 3 + 3));
+const shelfProjects = projects.filter(project => !project.offMenu);
+const projectShelves = Array.from({ length: Math.ceil(shelfProjects.length / 3) }, (_, index) => shelfProjects.slice(index * 3, index * 3 + 3));
 const recommendedProjectIds = new Set(["faceid-desk", "survival-analysis"]);
 
 export function Portfolio({ hasPhoto }: { hasPhoto: boolean }) {
@@ -112,19 +113,20 @@ export function Portfolio({ hasPhoto }: { hasPhoto: boolean }) {
               <div className="project-shelves" aria-label={t.shelfDisplay}>{projectShelves.map((shelf, shelfIndex) => <div className="project-shelf-row" key={`shelf-${shelfIndex}`}>{shelf.map((project, itemIndex) => {
                 const projectIndex = shelfIndex * 3 + itemIndex;
                 const status = project.repository ? t.projectAvailable : project.status?.[language] ?? t.comingSoon;
-                return <motion.button type="button" key={project.id} className={`drink-choice ${project.repository ? "has-repository" : "is-upcoming"}`} onClick={event => openProject(project, event.currentTarget)} whileHover={reducedMotion ? undefined : { y: -5 }} whileTap={reducedMotion ? undefined : { scale: .97 }} aria-label={`${t.openProject}: ${project.name}. ${status}`} aria-haspopup="dialog"><span className="drink-number mono">/ {String(projectIndex + 1).padStart(2, "0")}</span><span className="drink-illustration"><Drink style={project.glass} color={project.color} /></span><span className="drink-name">{project.name}</span><span className="drink-year mono">{project.year}</span>{project.status && <span className="drink-status mono">{project.status[language]}</span>}</motion.button>;
+                return <motion.button type="button" key={project.id} className={`drink-choice ${project.repository ? "has-repository" : "is-upcoming"} ${project.id === "pulso" ? "is-new-drink" : ""}`} onClick={event => openProject(project, event.currentTarget)} whileHover={reducedMotion ? undefined : { y: -5 }} whileTap={reducedMotion ? undefined : { scale: .97 }} aria-label={`${t.openProject}: ${project.name}. ${status}`} aria-haspopup="dialog"><span className="drink-number mono">/ {String(projectIndex + 1).padStart(2, "0")}</span>{project.id === "pulso" && <span className="drink-new mono">{t.featured}</span>}<span className="drink-illustration"><Drink style={project.glass} color={project.color} /></span><span className="drink-name">{project.name}</span><span className="drink-year mono">{project.year}</span>{project.status && <span className="drink-status mono">{project.status[language]}</span>}</motion.button>;
               })}</div>)}</div>
               <div className="scene-bottom mono"><span>{t.sceneNote}</span><span aria-hidden="true">↓</span></div>
             </div>
             <div className="project-menu">
               <div className="menu-heading"><div><span className="mono">{t.menuSub}</span><h3>{t.menu}<span aria-hidden="true">✳</span></h3></div><span className="menu-count mono">{String(projects.length).padStart(2, "0")}</span></div>
               <div className="menu-list">{projects.map(project => {
-                const isFeatured = project.id === "memoria";
+                const isFeatured = project.id === "pulso";
                 const isRecommended = recommendedProjectIds.has(project.id);
                 const isUpcoming = !project.repository;
-                return <button type="button" className={`menu-item ${isFeatured ? "is-featured" : ""}`} key={project.id} onClick={event => openProject(project, event.currentTarget)} aria-label={`${t.openProject}: ${project.name}${isRecommended ? `. ${t.recommended}` : ""}${isUpcoming ? `. ${t.menuComingSoon}` : ""}${isFeatured ? `. ${t.featured}` : ""}`} aria-haspopup="dialog">
+                return <button type="button" className={`menu-item ${isFeatured ? "is-featured" : ""} ${project.offMenu ? "is-off-menu" : ""}`} key={project.id} onClick={event => openProject(project, event.currentTarget)} aria-label={`${t.openProject}: ${project.name}${isRecommended ? `. ${t.recommended}` : ""}${isUpcoming ? `. ${t.menuComingSoon}` : ""}${isFeatured ? `. ${t.featured}` : ""}${project.offMenu ? `. ${t.offMenu}` : ""}`} aria-haspopup="dialog">
                   <span className="menu-item-title"><span className="menu-project-name">{project.name}</span><span className="menu-item-meta">
                     {isFeatured && <span className="menu-featured mono">{t.featured}</span>}
+                    {project.offMenu && <span className="menu-off-menu mono">{t.offMenu}</span>}
                     {isRecommended && <span className="menu-recommended mono">{t.recommended}</span>}
                     {isUpcoming && <span className="menu-status mono">{t.menuComingSoon}</span>}
                     <Arrow />
@@ -175,7 +177,9 @@ function ProjectDetail({ project, language, onClose, opener }: { project: Projec
   return <motion.dialog ref={dialog} className="project-dialog" aria-labelledby="project-title" aria-describedby="project-summary" onCancel={event => { event.preventDefault(); onClose(); }} onClick={event => { if (event.target === event.currentTarget) onClose(); }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : .2 }}>
     <motion.div className="project-panel" initial={{ x: reducedMotion ? 0 : "100%" }} animate={{ x: 0 }} exit={{ x: reducedMotion ? 0 : "100%" }} transition={{ duration: reducedMotion ? 0 : .3, ease: [.22, 1, .36, 1] }}>
       <div className="panel-top mono"><span>{t.projectFile} / {project.year}</span><button type="button" onClick={onClose} aria-label={t.close} autoFocus><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></button></div>
-      <div className="panel-art"><Drink style={project.glass} color={project.color} /><span className="mono">{project.category[language]}</span></div>
+      <div className={`panel-art ${project.id === "pulso" ? "panel-art-tropical" : ""}`}><Drink style={project.glass} color={project.color} /><span className="mono">{project.category[language]}</span></div>
+      {project.id === "pulso" && <p className="panel-new mono">{t.featured}</p>}
+      {project.offMenu && <p className="panel-off-menu mono">{t.offMenu} · {t.offMenuNote}</p>}
       <p className="eyebrow">{project.year} / {project.category[language]}</p><h2 id="project-title">{project.name}</h2><p className="panel-summary" id="project-summary">{project.summary[language]}</p>
       <div className="panel-section panel-project-type"><h3 className="mono">{t.collaboration}</h3><p>{project.collaboration[language]}</p></div>
       <div className="project-detail-tabs" role="tablist" aria-label={project.name}>
