@@ -424,20 +424,12 @@ svg { flex-shrink: 0; }
 }
 
 /* Pulso: cocktail tropical de la temporada. */
-.drink-choice.is-new-drink { background: radial-gradient(ellipse at 50% 48%, #f7846924, transparent 72%); }
-.drink-choice.is-new-drink .drink-art { filter: drop-shadow(0 0 15px #f6b55a88); }
-.drink-choice.is-new-drink:hover .drink-art, .drink-choice.is-new-drink:focus-visible .drink-art { filter: drop-shadow(0 0 20px #f78469aa); }
-.drink-choice.is-new-drink .drink-name { color: #ffcf9a; }
 .drink-new { position: absolute; top: 1px; right: 3px; padding: 5px 7px; background: #f78469; color: #142b20; border-radius: 3px; font-size: 7px; font-weight: 700; letter-spacing: .4px; transform: rotate(5deg); box-shadow: 0 3px 12px #0003; }
-.menu-item.is-featured { position: relative; padding-left: 12px; padding-right: 12px; border-left: 3px solid #f78469; background: linear-gradient(110deg, #f784691b, #e6c36a08); }
-.menu-item.is-featured .menu-project-name { color: #ffcf9a; }
 .menu-item.is-featured .menu-featured { border-color: #f78469; background: #f78469; color: #142b20; font-weight: 700; }
 .menu-item.is-off-menu .menu-project-name { color: #a8b49e; }
 .menu-off-menu { border: 1px dashed #a8b49e80; color: #b9c2ab; border-radius: 999px; padding: 5px 8px; font-size: 7px; letter-spacing: .7px; white-space: nowrap; }
-.panel-art.panel-art-tropical { background: radial-gradient(ellipse at 50% 65%, #f7846930, transparent 70%), #10281c; }
 .panel-new { display: inline-block; margin-bottom: 14px; padding: 6px 10px; border-radius: 3px; background: #f78469; color: #142b20; font-size: 10px; font-weight: 700; }
 .panel-off-menu { margin-bottom: 18px; color: #b9c2ab; font-size: 10px; line-height: 1.8; }
 @media (max-width: 520px) {
   .drink-new { font-size: 6px; padding: 4px; right: 0; top: -2px; }
-  .menu-item.is-featured { padding-left: 9px; padding-right: 9px; }
 }
